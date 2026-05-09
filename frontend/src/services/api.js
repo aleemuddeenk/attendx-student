@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: "https://attendx-student-production.up.railway.app", // Spring Boot default
+  baseURL: "http://localhost:8080", // Spring Boot default
 });
 
 // Automatically inject JWT token into all requests if it exists in local storage

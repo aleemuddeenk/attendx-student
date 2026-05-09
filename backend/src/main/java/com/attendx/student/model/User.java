@@ -1,7 +1,7 @@
 package com.attendx.student.model;
 
 import jakarta.persistence.*;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
@@ -26,7 +26,11 @@ public class User {
     @Column(name = "reset_token")
     private String resetToken;
 
-    public User() {}
+    @Column(name = "reset_token_expiry")
+    private LocalDateTime resetTokenExpiry;
+
+    public User() {
+    }
 
     public User(String name, String email, String regNo, String password) {
         this.name = name;
@@ -35,16 +39,59 @@ public class User {
         this.password = password;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-    public String getRegNo() { return regNo; }
-    public void setRegNo(String regNo) { this.regNo = regNo; }
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
-    public String getResetToken() { return resetToken; }
-    public void setResetToken(String resetToken) { this.resetToken = resetToken; }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRegNo() {
+        return regNo;
+    }
+
+    public void setRegNo(String regNo) {
+        this.regNo = regNo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getResetToken() {
+        return resetToken;
+    }
+
+    public void setResetToken(String resetToken) {
+        this.resetToken = resetToken;
+    }
+
+    public LocalDateTime getResetTokenExpiry() {
+        return resetTokenExpiry;
+    }
+
+    public void setResetTokenExpiry(LocalDateTime resetTokenExpiry) {
+        this.resetTokenExpiry = resetTokenExpiry;
+    }
 }

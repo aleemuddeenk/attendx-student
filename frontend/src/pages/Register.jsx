@@ -20,7 +20,7 @@ export default function Register() {
       return;
     }
     try {
-      await api.post('/auth/register', { name, email, regNo, password });
+      await api.post('/api/auth/register', { name, email, regNo, password });
       alert("Account created successfully. Please login.");
       navigate('/login');
     } catch (err) {
@@ -31,39 +31,39 @@ export default function Register() {
   return (
     <Card title="Register" subtitle="Create your new ATTENDX student account.">
       <form onSubmit={handleRegister}>
-        <Input 
-          label="Full Name" 
+        <Input
+          label="Full Name"
           placeholder="John Doe"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
-        <Input 
-          label="Email Address" 
+        <Input
+          label="Email Address"
           type="email"
           placeholder="student@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
-        <Input 
-          label="Registration Number" 
+        <Input
+          label="Registration Number"
           placeholder="e.g. STU12345"
           value={regNo}
           onChange={(e) => setRegNo(e.target.value)}
           required
         />
         <div style={{ display: 'flex', gap: '1rem' }}>
-          <Input 
-            label="Password" 
+          <Input
+            label="Password"
             type="password"
             placeholder="********"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Input 
-            label="Confirm Password" 
+          <Input
+            label="Confirm Password"
             type="password"
             placeholder="********"
             value={confirmPassword}

@@ -24,6 +24,11 @@ public class SecurityConfig {
     }
 
     @Bean
+    public IpRestrictionFilter ipRestrictionFilter() {
+        return new IpRestrictionFilter();
+    }
+
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -44,6 +49,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated());
 
+        http.addFilterBefore(ipRestrictionFilter(), UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
@@ -53,7 +59,8 @@ public class SecurityConfig {
     public org.springframework.web.cors.CorsConfigurationSource corsConfigurationSource() {
         org.springframework.web.cors.CorsConfiguration configuration = new org.springframework.web.cors.CorsConfiguration();
         configuration.setAllowedOriginPatterns(
-                java.util.List.of("http://localhost:*", "http://127.0.0.1:*", "https://attendx-student.vercel.app"));
+                java.util.List.of("http://localhost:*", "http://127.0.0.1:*",
+                        "https://attendx-student.vercel.app"));
         configuration.setAllowedMethods(java.util.List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(java.util.List.of("*"));
         configuration.setAllowCredentials(true);
